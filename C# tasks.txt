@@ -1,0 +1,328 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+namespace ComprehensiveAssignment
+{
+#region ================= TASK 19: ENUMS =================
+public enum StudentStatus
+{
+Active = 1,
+Graduated,
+Suspended
+}
+#endregion
+
+#region ================= TASK 18: ABSTRACTION & INTERFACES =================
+public interface ISearchable
+{
+void Search(List<Student> students, string keyword);
+}
+
+public abstract class Report
+{
+public abstract void PrintReport(List<Student> students, List<Department> departments);
+}
+#endregion
+
+#region ================= TASKS 13, 14, 15, 16, 17: DOMAIN CLASSES =================
+
+// Task 16: Inheritance (Base Class)
+public class Person
+{
+public int Id { get; set; }
+public string Name { get; set; }
+
+// Task 15: Private field with public property encapsulation/validation
+private int _age;
+public int Age
+{
+get => _age;
+set
+{
+if (value < 5)
+{
+Console.WriteLine("Validation Error: Age cannot be less than 5.");
+_age = 5; // Fallback default
+}
+else
+{
+_age = value;
+}
+}
+}
+
+public Person(int id, string name, int age)
+{
+Id = id;
+Name = name;
+Age = age;
+}
+
+// Task 17: Polymorphism (Virtual Method)
+public virtual void DisplayInfo()
+{
+Console.WriteLine($`"ID: {Id} | Name: {Name} | Age: {Age}");
+}
+}
+
+// Task 14: Department Class
+public class Department
+{
+public int Id { get; set; }
+public string Name { get; set; }
+
+public Department(int id, string name)
+{
+Id = id;
+Name = name;
+}
+}
+
+// Task 13 & 16: Student inheriting from Person
+public class Student : Person
+{
+// Task 15: Private field validation
+private double _grade;
+public double Grade
+{
+get => _grade;
+set
+{
+if (value < 0 || value > 100)
+{
+Console.WriteLine("Validation Error: Grade must be between 0 and 100.");
+_grade = 0; // Fallback default
+}
+else
+{
+_grade = value;
+}
+}
+}
+
+public int DepartmentId { get; set; }
+public StudentStatus Status { get; set; } // Task 19
+
+// Task 13: Constructor
+public Student(int id, string name, int age, double grade, int departmentId, StudentStatus status)
+: base(id, name, age)
+{
+Grade = grade;
+DepartmentId = departmentId;
+Status = status;
+}
+
+// Task 17: Polymorphism (Method Overriding)
+public override void DisplayInfo()
+{
+Console.WriteLine(`$"[Student] ID: {Id} | Name: {Name} | Age: {Age} | Grade: {Grade} | Dept ID: {DepartmentId} | Status: {Status}");
+}
+}
+
+// Task 16 & 17: Teacher inheriting from Person
+public class Teacher : Person
+{
+public string Subject { get; set; }
+
+public Teacher(int id, string name, int age, string subject) : base(id, name, age)
+{
+Subject = subject;
+}
+
+public override void DisplayInfo()
+{
+Console.WriteLine($`"[Teacher] ID: {Id} | Name: {Name} | Age: {Age} | Subject: {Subject}");
+}
+}
+#endregion
+
+#region ================= TASK 18 & 22: IMPLEMENTATIONS =================
+public class StudentSearcher : ISearchable
+{
+public void Search(List<Student> students, string keyword)
+{
+var matches = students.Where(s => s.Name.ToLower().Contains(keyword.ToLower())).ToList();
+Console.WriteLine(`$"Found {matches.Count} results:");
+foreach (var match in matches)
+{
+match.DisplayInfo();
+}
+}
+}
+
+public class StudentReport : Report
+{
+// Task 22: Department Statistics Logic
+public override void PrintReport(List<Student> students, List<Department> departments)
+{
+Console.WriteLine("\n================ DEPARTMENT STATISTICS REPORT ================");
+if (!students.Any())
+{
+Console.WriteLine("No students in database to calculate statistics.");
+return;
+}
+
+foreach (var dept in departments)
+{
+var deptStudents = students.Where(s => s.DepartmentId == dept.Id).ToList();
+Console.WriteLine(latex
+"\nDepartment: {dept.Name}"); Console.WriteLine(new string('-', 30)); Console.WriteLine(
+
+"Total Students: {deptStudents.Count}");
+
+if (deptStudents.Any())
+{
+Console.WriteLine("Oldest Age: {deptStudents.Max(s => s.Age)}");
+Console.WriteLine($`"Youngest Age: {deptStudents.Min(s => s.Age)}");
+}
+}
+
+Console.WriteLine("\n--- Enrollment Max / Min ---");
+var counts = departments.Select(d => new { d.Name, Count = students.Count(s => s.DepartmentId == d.Id) }).ToList();
+var maxDept = counts.OrderByDescending(c => c.Count).First();
+var minDept = counts.OrderBy(c => c.Count).First();
+
+Console.WriteLine($"Highest Enrollment: {maxDept.Name} ({maxDept.Count} students)"); Console.WriteLine($"Lowest Enrollment: {minDept.Name} ({minDept.Count} students)");
+Console.WriteLine("=============================================================");
+}
+}
+#endregion
+
+class Program
+{
+// Task 23: Text File Database Configurations
+private const string FilePath = "students.txt";
+private static List<Student> studentsDatabase = new List<Student>();
+private static List<Department> departments = new List<Department>()
+{
+new Department(1, "Computer Science"),
+new Department(2, "Information Technology"),
+new Department(3, "Software Engineering")
+};
+
+static void Main(string[] args)
+{
+// Run linear fundamentals track tasks sequentially
+ExecuteSequentialTasks();
+
+// Setup and run the persistent object-oriented database app (Tasks 13 - 24)
+LoadFromTextFile();
+RunMainApplicationLoop();
+}
+
+#region ================= TASKS 1 - 12: SEQUENTIAL TRACE =================
+private static void ExecuteSequentialTasks()
+{
+// Task 1: First Console Program
+Console.WriteLine("=== Task 1 - First Console Program ===");
+// Prints a welcome message to the console screen
+Console.WriteLine("Welcome to the combined C# course assignment execution pipeline!");
+// Outputs student profiles line by line
+Console.WriteLine("Developer: Jane Doe");
+Console.WriteLine("Age: 22");
+Console.WriteLine("Department: Software Engineering\n");
+
+// Task 2: Student Info Input
+Console.WriteLine("=== Task 2 - Student Info Input ===");
+Console.Write("Enter name: ");
+string t2Name = Console.ReadLine();
+Console.Write("Enter department: ");
+string t2Dept = Console.ReadLine();
+Console.Write("Enter age text: ");
+int t2Age = Convert.ToInt32(Console.ReadLine()); // Convert text to number
+Console.Write("Enter grade text: ");
+double t2Grade = Convert.ToDouble(Console.ReadLine()); // Convert text to number
+Console.WriteLine(`$"Clean Summary -> Name: {t2Name}, Age: {t2Age}, Dept: {t2Dept}, Grade: {t2Grade}\n");
+
+// Task 3 & 4: Calculator with Menu and Division Check
+ExecuteCalculatorSubsystem();
+
+// Task 5: Grade Result Validation
+Console.WriteLine("=== Task 5 - Grade Result ===");
+Console.Write("Enter numeric grade (0-100): ");
+double t5Grade = Convert.ToDouble(Console.ReadLine());
+if (t5Grade < 0 || t5Grade > 100)
+{
+Console.WriteLine("Error: Invalid Grade bounds! Out of 0-100 threshold.");
+}
+else
+{
+// Task 11: Call calculation method
+Console.WriteLine($`"Grade Result Category: {GetGradeCategory(t5Grade)}");
+}
+Console.WriteLine();
+
+// Task 6: Age Category with Boolean Flag
+Console.WriteLine("=== Task 6 - Age Category ===");
+int t6Age = ReadInteger("Enter your age: "); // Task 11 wrapper
+bool isValidAge = t6Age >= 0;
+if (isValidAge)
+{
+if (t6Age <= 12) Console.WriteLine("Category: Child");
+else if (t6Age <= 19) Console.WriteLine("Category: Teenager");
+else if (t6Age <= 64) Console.WriteLine("Category: Adult");
+else Console.WriteLine("Category: Senior");
+}
+else
+{
+Console.WriteLine("Invalid negative age provided.");
+}
+Console.WriteLine();
+
+// Task 7: Names and Strings
+Console.WriteLine("=== Task 7 - Names and Strings ===");
+Console.Write("Enter First Name: ");
+string fName = Console.ReadLine();
+Console.Write("Enter Last Name: ");
+string lName = Console.ReadLine();
+string fullName = $"{fName} {lName}"; Console.WriteLine($"Full Name: {fullName}");
+Console.WriteLine($"Uppercase: {fullName.ToUpper()}"); Console.WriteLine($"Lowercase: {fullName.ToLower()}");
+Console.WriteLine($"Character Count: {fullName.Length}"); Console.WriteLine($"Contains the letter 'a': {fullName.ToLower().Contains("a")}\n");
+
+// Task 8: Numbers Practice
+Console.WriteLine("=== Task 8 - Numbers Practice ===");
+double[] arrNumbers = new double[5];
+for (int i = 0; i < 5; i++)
+{
+arrNumbers[i] = Convert.ToDouble(Console.ReadLine() ?? "0");
+}
+Console.WriteLine(`$"Total: {arrNumbers.Sum()} | Avg: {arrNumbers.Average()} | Max: {arrNumbers.Max()} | Min: {arrNumbers.Min()}\n");
+
+// Task 9: Loop Practice
+Console.WriteLine("=== Task 9 - Loop Practice (For Loop) ===");
+for (int i = 1; i <= 20; i++)
+{
+if (i % 3 == 0) continue;
+if (i == 17) break;
+Console.Write(i + " ");
+}
+Console.WriteLine("\n=== Task 9 - Loop Practice (While Loop) ===");
+int wCounter = 1;
+while (wCounter <= 20)
+{
+if (wCounter % 3 == 0) { wCounter++; continue; }
+if (wCounter == 17) break;
+Console.Write(wCounter + " ");
+wCounter++;
+}
+Console.WriteLine("\n");
+
+// Task 10: Student List Arrays
+Console.WriteLine("=== Task 10 - Student List ===");
+string[] namesArray = new string[5];
+int[] agesArray = new int[5];
+for (int i = 0; i < 5; i++)
+{
+Console.Write("Enter student {i + 1} age: ");
+agesArray[i] = Convert.ToInt32(Console.ReadLine());
+}
+Console.WriteLine("Students between ages 18 and 22:");
+for (int i = 0; i < 5; i++)
+{
+if (agesArray[i] >= 18 && agesArray[i] <= 22)
+Console.WriteLine(latex
+"- {namesArray[i]} ({agesArray[i]} y/o)"); } Console.WriteLine(
+
+"Old
