@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Films</title>
+</head>
+<body style="padding:55px;font-family:Arial,sans-serif;">
+<div style="width:220px;border:2px solid black;padding:10px;border-radius:8px;">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRw96Oz78Av4vyzRCvqpw3owNg7V2uLwE_mwm23010fA&s=10" style="width:100%;">
+<h1 style="font-size:18px;">Power Book II</h1>
+<h3 style="font-size:14px;">About a lost minded kid who killed his dad</h3>
+<span style="background:black;color:white;padding:4px;">action</span>
+<span style="background:black;color:white;padding:4px;">drama</span>
+</div>
+</body>
+</html>
