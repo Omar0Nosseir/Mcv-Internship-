@@ -1,0 +1,151 @@
+// ==========================================
+// Task 1: Swap Two Variables (Without a Third Variable) [cite: 4]
+// ==========================================
+let a = 5; // [cite: 6]
+let b = 10; // [cite: 7]
+
+// Swap using destructuring
+[a, b] = [b, a];
+
+console.log("--- Task 1 ---");
+console.log("a:", a); // Output: 10
+console.log("b:", b); // Output: 5
+
+// ==========================================
+// Task 2: Find the Maximum Number in an Array [cite: 9]
+// ==========================================
+let numbers = [4, 9, 2, 7, 5]; // [cite: 11]
+let max = numbers[0];
+
+for (let i = 1; i < numbers.length; i++) {
+if (numbers[i] > max) {
+max = numbers[i];
+}
+}
+
+console.log("\n--- Task 2 ---");
+console.log("Maximum number:", max); // Output: 9
+
+// ==========================================
+// Task 3: Count Vowels in a String [cite: 13]
+// ==========================================
+let str = "JavaScript is awesome"; // [cite: 15]
+let vowels = "aeiou";
+let vowelCount = 0; // Renamed slightly to avoid conflicts
+
+for (let i = 0; i < str.length; i++) {
+if (vowels.includes(str[i].toLowerCase())) {
+vowelCount++;
+}
+}
+
+console.log("\n--- Task 3 ---");
+console.log("Vowel count:", vowelCount); // Output: 8
+
+// ==========================================
+// Task 4: Check if a Number is Prime [cite: 17]
+// ==========================================
+function isPrime(num) { // [cite: 18]
+if (num <= 1) return false;
+
+for (let i = 2; i < num; i++) {
+if (num % i === 0) {
+return false;
+}
+}
+return true;
+}
+
+console.log("\n--- Task 4 ---");
+console.log("Is 17 prime?:", isPrime(17)); // Output: true [cite: 18]
+
+// ==========================================
+// Task 5: Reverse a String [cite: 19]
+// ==========================================
+function reverseString(text) { // Changed parameter name slightly for clarity
+let reversed = "";
+
+for (let i = text.length - 1; i >= 0; i--) {
+reversed += text[i];
+}
+
+return reversed;
+}
+
+console.log("\n--- Task 5 ---");
+console.log(reverseString("hello")); // Output: "olleh" [cite: 20]
+
+// ==========================================
+// Task 6: Sum Only Even Numbers in an Array [cite: 21]
+// ==========================================
+let nums = [1, 2, 3, 4, 5, 6]; // [cite: 23]
+let sum = 0;
+
+for (let i = 0; i < nums.length; i++) {
+if (nums[i] % 2 === 0) {
+sum += nums[i];
+}
+}
+
+console.log("\n--- Task 6 ---");
+console.log("Sum of even numbers:", sum); // Output: 12
+
+// ==========================================
+// Task 7: Remove Duplicates from an Array [cite: 25]
+// ==========================================
+let arr = [1, 2, 3, 2, 4, 1, 5]; // [cite: 27]
+let uniqueArr = [];
+
+for (let i = 0; i < arr.length; i++) {
+if (!uniqueArr.includes(arr[i])) {
+uniqueArr.push(arr[i]);
+}
+}
+
+console.log("\n--- Task 7 ---");
+console.log("Array without duplicates:", uniqueArr); // Output: [1, 2, 3, 4, 5]
+
+// ==========================================
+// Task 8: FizzBuzz Challenge [cite: 29]
+// ==========================================
+console.log("\n--- Task 8 ---");
+for (let i = 1; i <= 30; i++) { // [cite: 30]
+if (i % 3 === 0 && i % 5 === 0) { // [cite: 33]
+console.log("FizzBuzz");
+}
+else if (i % 3 === 0) { // [cite: 31]
+console.log("Fizz");
+}
+else if (i % 5 === 0) { // [cite: 32]
+console.log("Buzz");
+}
+else {
+console.log(i); // [cite: 34]
+}
+}
+
+// ==========================================
+// Task 9: Factorial of a Number using a function [cite: 35]
+// ==========================================
+function factorial(n) { // [cite: 36]
+let result = 1;
+
+for (let i = 1; i <= n; i++) {
+result *= i;
+}
+
+return result;
+}
+
+console.log("\n--- Task 9 ---");
+console.log("Factorial of 5:", factorial(5)); // Output: 120 [cite: 36]
+
+// ==========================================
+// Task 10: Create an Object and Loop Over Its Properties [cite: 37]
+// ==========================================
+let car = { brand: "Toyota", model: "Corolla", year: 2020, color: "blue" }; // [cite: 39]
+
+console.log("\n--- Task 10 ---");
+for (let key in car) { // [cite: 40]
+console.log(key + ": " + car[key]); // [cite: 40]
+}
