@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magic Fortune Button</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+padding: 40px;
+background-color: #ffffff;
+}
+h1 {
+font-size: 24px;
+margin-bottom: 15px;
+}
+button {
+padding: 6px 12px;
+font-size: 14px;
+cursor: pointer;
+}
+#fortune-text {
+margin-top: 20px;
+font-size: 18px;
+font-weight: bold;
+color: #333;
+}
+</style>
+</head>
+<body>
+
+<h1>Magic Fortune Button 🔮</h1>
+
+<button id="fortune-btn">Get Your Fortune</button>
+
+<div id="fortune-text"></div>
+
+<script>
+const fortunes = [
+"You will have a highly productive day!",
+"A thrilling adventure awaits you around the corner.",
+"Your hard work will pay off sooner than you think.",
+"An unexpected package or message will bring you joy.",
+"Trust your instincts; they are leading you in the right direction.",
+"Do not count the days, make the days count."
+ ];
+
+const button = document.getElementById("fortune-btn");
+const display = document.getElementById("fortune-text");
+
+button.addEventListener("click", function() {
+const randomIndex = Math.floor(Math.random() * fortunes.length);
+display.textContent = fortunes[randomIndex];
+});
+</script>
+
+</body>
+</html>
