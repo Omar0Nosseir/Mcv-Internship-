@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body style="margin: 0; background: black; display: flex; justify-content: center; align-items: center; height: 100vh;">
+<div style="width: 220px; height: 180px; border: 2px solid white; position: relative;">
+<div style="position: absolute; bottom: 0px; left: 50%; transform: translateX(-50%); display: flex; gap: 16px; align-items: flex-end;">
+<p style="margin: 0; font-size: 28px; animation: jump 0.8s infinite ease-in-out;">🇪🇬</p>
+<p style="margin: 0; font-size: 28px; animation: moveSide 1s infinite ease-in-out;">🇦🇷</p>
+<p style="margin: 0; font-size: 28px; animation: dizzy 0.7s infinite ease-in-out;">🇧🇷</p>
+</div>
+</div>
+
+<style>
+@keyframes jump {
+0%, 100% { transform: translateY(0); }
+50% { transform: translateY(-12px); }
+}
+
+@keyframes moveSide {
+0%, 100% { transform: translateX(0); }
+50% { transform: translateX(12px); }
+}
+
+@keyframes dizzy {
+0%, 100% { transform: rotate(8deg); }
+50% { transform: rotate(-8deg); }
+}
+</style>
+</body>
+</html>
