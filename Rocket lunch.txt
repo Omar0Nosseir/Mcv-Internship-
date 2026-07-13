@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rocket Launch</title>
+<style>
+body {
+margin: 0;
+background-color: #0b1d3a;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+height: 100vh;
+overflow: hidden;
+font-family: Arial, sans-serif;
+}
+
+.space-container {
+position: relative;
+width: 100%;
+height: 70vh;
+display: flex;
+justify-content: center;
+align-items: flex-end;
+}
+
+#rocket {
+font-size: 50px;
+position: absolute;
+bottom: 20px;
+transition: bottom 2s cubic-bezier(0.42, 0, 1, 1);
+}
+
+.launched {
+bottom: 110vh !important;
+}
+
+button {
+padding: 12px 24px;
+font-size: 18px;
+font-weight: bold;
+color: #0b1d3a;
+background-color: #ffffff;
+border: none;
+border-radius: 8px;
+cursor: pointer;
+box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+z-index: 10;
+}
+
+button:active {
+transform: scale(0.98);
+}
+</style>
+</head>
+<body>
+
+<div class="space-container">
+<div id="rocket">🚀</div>
+</div>
+
+<button id="launch-btn">Launch</button>
+
+<script>
+const launchButton = document.getElementById("launch-btn");
+const rocket = document.getElementById("rocket");
+
+launchButton.addEventListener("click", function() {
+rocket.classList.add("launched");
+});
+</script>
+
+</body>
+</html>
