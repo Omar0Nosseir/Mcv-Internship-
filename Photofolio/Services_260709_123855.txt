@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PhotoFolio - Services</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background-color: #000000; color: #ffffff; font-family: Arial, sans-serif; line-height: 1.6; }
+
+header { background-color: rgba(22, 23, 24, 0.9); padding: 25px 50px; display: flex; justify-content: space-between; align-items: center; position: fixed; width: 100%; top: 0; z-index: 100; border-bottom: 1px solid #1f2122; }
+header .logo { font-size: 24px; font-weight: bold; color: #ffffff; text-decoration: none; }
+header .logo span { color: #27a776; }
+header nav a { color: rgba(255, 255, 255, 0.7); text-decoration: none; margin-left: 20px; font-weight: 500; transition: 0.3s; }
+header nav a:hover, header nav a.active { color: #27a776; }
+
+.services-container { padding: 150px 50px 60px 50px; max-width: 1200px; margin: 0 auto; }
+.section-title { text-align: center; margin-bottom: 40px; font-size: 32px; font-weight: bold; }
+
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+.service-box { background-color: #161718; padding: 40px 30px; border-radius: 8px; text-align: center; transition: 0.3s ease; border: 1px solid #1f2122; }
+.service-box:hover { border-color: #27a776; }
+
+.service-icon { font-size: 45px; color: #27a776; margin-bottom: 20px; }
+.service-box h3 { margin-bottom: 15px; font-size: 22px; font-weight: 600; }
+.service-box p { color: rgba(255, 255, 255, 0.6); font-size: 15px; }
+
+footer { text-align: center; padding: 30px; background-color: #161718; margin-top: 100px; color: rgba(255, 255, 255, 0.5); font-size: 14px; border-top: 1px solid #1f2122; }
+</style>
+</head>
+<body>
+
+<header>
+<a href="index.html" class="logo">Photo<span>Folio</span></a>
+<nav>
+<a href="index.html">Home</a>
+<a href="gallery.html">Gallery</a>
+<a href="services.html" class="active">Services</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+</nav>
+</header>
+
+<section class="services-container">
+<h2 class="section-title">Services</h2>
+<div class="services-grid">
+<div class="service-box">
+<div class="service-icon">📷</div>
+<h3>Portrait Photography</h3>
+<p>Professional individual and group portrait sessions in studio or outdoor locations with customized lighting.</p>
+</div>
+<div class="service-box">
+<div class="service-icon">🌿</div>
+<h3>Nature & Landscape</h3>
+<p>High-quality landscape and wildlife photography for magazines, websites, and commercial printing projects.</p>
+</div>
+<div class="service-box">
+<div class="service-icon">💍</div>
+<h3>Event & Wedding</h3>
+<p>Capturing your special day and beautiful moments with a creative storytelling approach and premium editing.</p>
+</div>
+<div class="service-box">
+<div class="service-icon">🎬</div>
+<h3>Video Editing</h3>
+<p>Professional video color grading and editing services for short films, commercials, and social media content.</p>
+</div>
+</div>
+</section>
+
+<footer>
+<p>© 2026 PhotoFolio. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
